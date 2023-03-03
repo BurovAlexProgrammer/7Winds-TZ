@@ -42,10 +42,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 73ac6e7061af66f4884c3e987bec3291, type: 3}
   - {fileID: 21300000, guid: 86ecd790bd2fe2045a514a66a369d907, type: 3}
   - {fileID: 21300000, guid: fd5f27b0f88593a4c908c4af215d5f81, type: 3}
+  - {fileID: 21300000, guid: b00a6e21a0bae404f8557c276616b7c9, type: 3}
   - {fileID: 21300000, guid: ec5684a1372cebf49887860a299f81b2, type: 3}
   - {fileID: 21300000, guid: 8e7ebf427c1734041b6dae8684f289ab, type: 3}
   - {fileID: 21300000, guid: bf4cd2d25d920d44b836c4460cf524d7, type: 3}
-  - {fileID: 21300000, guid: cdfcaed2476f3934da7980f4baadab04, type: 3}
   - {fileID: 21300000, guid: 6acc0203c6f226e44a31443b0abbe98e, type: 3}
   - {fileID: 21300000, guid: 1e2f143387fb8af4984b70f7ccfdb08d, type: 3}
   - {fileID: 21300000, guid: a1e782436320feb47a93275b03107165, type: 3}
@@ -55,16 +55,17 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8fe8d025c8bfdab4385e96e00ff562e5, type: 3}
   - {fileID: 21300000, guid: 5fc061350b7e11f4cb0efd7ec765a664, type: 3}
   - {fileID: 21300000, guid: 3fff3d35018afd14c8c820f504b356e3, type: 3}
-  - {fileID: 21300000, guid: a28053556d0943f47b6be06affe1b250, type: 3}
   - {fileID: 21300000, guid: 494734550f0a47d4490b26c803385a3b, type: 3}
   - {fileID: 21300000, guid: 4a395a7571d1d8c45bd30d6daaa65106, type: 3}
   - {fileID: 21300000, guid: a98b15c5a9e85eb46b9a01836b2f6ba1, type: 3}
   - {fileID: 21300000, guid: 390f6386a3fde2448a378ba5dfdb0fc4, type: 3}
   - {fileID: 21300000, guid: 603e92b78f5ec29469bb72fd1af35808, type: 3}
+  - {fileID: 21300000, guid: c25fbcd89de5b6f4faaa9e3c28097f99, type: 3}
   - {fileID: 21300000, guid: e74756194a4463044b66df8c45238dc2, type: 3}
   - {fileID: 21300000, guid: 45581a4a9b501e04bb9a740b1210c41b, type: 3}
+  - {fileID: 21300000, guid: 0d367e5a9a3ac164480389c83e850370, type: 3}
   - {fileID: 21300000, guid: effd999a104003a4287c4199b6d4f9a5, type: 3}
-  - {fileID: 21300000, guid: 109414aaedb32ee448f44c8baf1ded55, type: 3}
+  - {fileID: 21300000, guid: 1dbb736b8c854074f97445b29ef6b70f, type: 3}
   - {fileID: 21300000, guid: dfcc9e7b33ec945459c4cf525b93e8d9, type: 3}
   - {fileID: 21300000, guid: 854a37ab458eda346a7b57649755b797, type: 3}
   - {fileID: 21300000, guid: f0e92b8c80c4d504bacb93ea226e720b, type: 3}
@@ -79,36 +80,37 @@ SpriteAtlas:
   - Mock3
   - type1layer4
   - logos_1_4
+  - clothes_hanger_mask
   - type0layer1
-  - button 1
+  - button_next
   - logos_2_1
-  - Group 196
   - type1layer2
   - type0layer0
-  - left
+  - button_left
   - logos_1_1
   - bg1
   - type0layer3
   - type1layer1
   - logos_2_3
   - logos_2_0
-  - Ellipse 39
   - type0layer4
   - Mock2
   - bg2
   - logos_1_0
   - type1layer3
-  - Input
-  - PalettePanel
+  - clothes_hanger
+  - text_input
+  - panel
+  - colorPick
   - HeadShadow
-  - Rectangle 284
+  - colorPick_selectFrame
   - type1layer0
   - logos_1_2
   - logos_1_3
   - Mock1
   - right
-  - change
-  - ColorTab
+  - button_change
+  - tab_color
   - logos_2_4
   - type0layer2
   m_RenderDataMap: {}

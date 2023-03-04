@@ -69,6 +69,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: dfcc9e7b33ec945459c4cf525b93e8d9, type: 3}
   - {fileID: 21300000, guid: 854a37ab458eda346a7b57649755b797, type: 3}
   - {fileID: 21300000, guid: f0e92b8c80c4d504bacb93ea226e720b, type: 3}
+  - {fileID: 21300000, guid: 87102c3d946439f4e98c57507fe6aa5c, type: 3}
   - {fileID: 21300000, guid: e7fbd57d1c60b9b4a94033b9b10d8f6e, type: 3}
   - {fileID: 21300000, guid: 7709152e99d267d419ad0b7a89c1b336, type: 3}
   - {fileID: 21300000, guid: 3746692e90aa77b478254dcc462b43d5, type: 3}
@@ -107,6 +108,7 @@ SpriteAtlas:
   - type1layer0
   - logos_1_2
   - logos_1_3
+  - tab_color_select_frame
   - Mock1
   - right
   - button_change

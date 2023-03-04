@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8710723874972829226}
   - component: {fileID: 6872455374503711554}
   - component: {fileID: 4117090441906549417}
-  - component: {fileID: 4364560738216999666}
+  - component: {fileID: 6080373411331951631}
   m_Layer: 5
   m_Name: ColorPick
   m_TagString: Untagged
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4364560738216999666
+--- !u!114 &6080373411331951631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5526601656201639292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f52ec3ebb894c66afa005e405c2ce94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -195,6 +195,4 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 4117090441906549417}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
+  _imageColorRef: {fileID: 4117090441906549417}

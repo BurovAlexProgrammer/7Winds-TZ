@@ -1,29 +1,34 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UniformView : MonoBehaviour
 {
-    [SerializeField] private Image _imageLayer1;
-    [SerializeField] private Image _imageLayer2;
-    [SerializeField] private Image _imageLayer3;
-    [SerializeField] private Color _colorLayer1;
-    [SerializeField] private Color _colorLayer2;
-    [SerializeField] private Color _colorLayer3;
+    [SerializeField] private Image[] _imageLayers;
+    [SerializeField] private Color[] _colorLayers;
     
-    void Start()
+    private void Start()
     {
-        SetColors();
+        SetInitialColors();
     }
 
-    void Update()
+    public void SetColor(Color color, int layerIndex)
     {
+        _colorLayers[layerIndex] = color;
+        _imageLayers[layerIndex].color = color;
+    }
+
+    private void SetInitialColors()
+    {
+        if (_imageLayers.Length != _colorLayers.Length)
+        {
+            Debug.LogError("Target GameObject with exception. (Click to select)");
+            throw new Exception($"UniformView error: imageLayers count not the same as colorLayers.");
+        }
         
-    }
-
-    private void SetColors()
-    {
-        _imageLayer1.color = _colorLayer1;
-        _imageLayer2.color = _colorLayer2;
-        _imageLayer3.color = _colorLayer3;
+        for (var i = 0; i < _imageLayers.Length; i++)
+        {
+            _imageLayers[i].color = _colorLayers[i];
+        }
     }
 }

@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7489435821860415865, guid: 891af387651ec0545ac4cadb78b9c98d, type: 3}
+      propertyPath: m_Name
+      value: Mask
+      objectReference: {fileID: 0}
     - target: {fileID: 7501989827392015682, guid: 891af387651ec0545ac4cadb78b9c98d, type: 3}
       propertyPath: m_Name
       value: UniformView1
@@ -109,6 +113,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7501989827392015709, guid: 891af387651ec0545ac4cadb78b9c98d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501989828509391248, guid: 891af387651ec0545ac4cadb78b9c98d, type: 3}
+      propertyPath: m_Name
+      value: Mock
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501989828509391248, guid: 891af387651ec0545ac4cadb78b9c98d, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

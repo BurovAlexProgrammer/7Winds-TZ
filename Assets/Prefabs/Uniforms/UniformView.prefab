@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3302271360991371582}
   - component: {fileID: 1004197889251571572}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ RectTransform:
   m_Children:
   - {fileID: 7501989828619302859}
   m_Father: {fileID: 7501989827392015709}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -122,7 +122,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7501989827392015709}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -198,7 +198,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7501989827392015709}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -272,12 +272,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7501989828509391251}
   - {fileID: 7501989827361035065}
   - {fileID: 7501989826765357686}
   - {fileID: 7501989828265870026}
   - {fileID: 7501989828331772575}
   - {fileID: 8250621076879548968}
+  - {fileID: 7501989828509391251}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -298,12 +298,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a6ebb025a6f1745b7ddb838a240819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _imageLayer1: {fileID: 7501989827361035064}
-  _imageLayer2: {fileID: 7501989826765357681}
-  _imageLayer3: {fileID: 7501989828265870021}
-  _colorLayer1: {r: 0.3528836, g: 0.8584906, b: 0.47763747, a: 1}
-  _colorLayer2: {r: 0.8113208, g: 0.20337689, b: 0.20337689, a: 1}
-  _colorLayer3: {r: 0.07903166, g: 0.37466478, b: 0.7924528, a: 1}
+  _imageLayers:
+  - {fileID: 7501989827361035064}
+  - {fileID: 7501989826765357681}
+  - {fileID: 7501989828265870021}
+  _colorLayers:
+  - {r: 0.2509804, g: 0.64705884, b: 0.854902, a: 1}
+  - {r: 0.019607844, g: 0, b: 0.46274513, a: 1}
+  - {r: 0.8000001, g: 0.80392164, b: 0.8000001, a: 1}
 --- !u!1 &7501989828265870027
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +337,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7501989827392015709}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -411,7 +413,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7501989827392015709}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -468,7 +470,7 @@ GameObject:
   - component: {fileID: 7501989828509391277}
   - component: {fileID: 7501989828509391250}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Mock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -487,7 +489,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7501989827392015709}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

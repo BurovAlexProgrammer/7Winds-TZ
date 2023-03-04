@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
+using Tabs;
 using UnityEngine;
 
 public class UniformViewer : MonoBehaviour
 {
     [SerializeField] private UniformView[] _uniformViewPrefabs;
-
+    [SerializeField] private ColorTabController _tabController;
+    [SerializeField] private PaletteController _palette;
+    
     private LinkedList<UniformView> _uniformViews;
     private UniformView _currentView;
 
     private void Awake()
     {
+        _palette.OnColorPicked += OnPaletteColorPicked;
+        
         if (_uniformViewPrefabs.Length == 0) throw new Exception("UniformViewer is empty.");
 
         _uniformViews = new LinkedList<UniformView>();
@@ -21,6 +26,19 @@ public class UniformViewer : MonoBehaviour
         }
 
         _currentView = _uniformViews.First.Value;
+    }
+
+    private void OnDestroy()
+    {
+        _palette.OnColorPicked -= OnPaletteColorPicked;
+    }
+
+    private void OnPaletteColorPicked(Color newColor)
+    {
+        Debug.Log("Picked");
+        var tabIndex = _tabController.GetSelectedTabIndex();
+        _currentView.SetColor(newColor, tabIndex);
+        
     }
 
     private void Start()
@@ -35,12 +53,14 @@ public class UniformViewer : MonoBehaviour
 
     public void ShowNext()
     {
-        SwitchView(_uniformViews.Find(_currentView).Next.Value);
+        var nextItem = _uniformViews.Find(_currentView).Next ?? _uniformViews.First;
+        SwitchView(nextItem.Value);
     }
 
     public void ShowPrev()
     {
-        SwitchView(_uniformViews.Find(_currentView).Previous.Value);
+        var prevItem = _uniformViews.Find(_currentView).Previous ?? _uniformViews.Last;
+        SwitchView(prevItem.Value);
     }
 
     private void SwitchView(UniformView newView)

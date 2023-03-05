@@ -52,16 +52,19 @@ namespace PageViews
 
         private async UniTaskVoid ExecuteShowNextPage()
         {
-            var nextPageNode = _pageViewList.Find(_currentPage).Next ?? _pageViewList.First;
-            var nextPage = nextPageNode.Value;
-            var sequence = DOTween.Sequence();
+            var nextPage = GetNextPage();
             _currentPage.SetInteractable(false);
             nextPage.SetInteractable(false);
             nextPage.gameObject.SetActive(true);
             
-            sequence
-                .Append(_currentPage.RectTransform.DOAnchorPosX(-Screen.width, ChangePageDuration))
-                .Join(nextPage.RectTransform.DOAnchorPosX(0f, ChangePageDuration).From(Vector2.right * Screen.width))
+            var sequence = DOTween.Sequence()
+                .Append(_currentPage.RectTransform
+                    .DOAnchorPosX(-Screen.width, ChangePageDuration)
+                    .SetEase(Ease.InOutQuart))
+                .Join(nextPage.RectTransform
+                    .DOAnchorPosX(0f, ChangePageDuration)
+                    .From(Vector2.right * Screen.width)
+                    .SetEase(Ease.InOutQuart))
                 .OnComplete(CompleteSequence);
             
             await sequence.ToUniTask(TweenCancelBehaviour.Complete, _cancellationToken);
@@ -71,6 +74,12 @@ namespace PageViews
                 _currentPage.gameObject.SetActive(false);
                 _currentPage = nextPage;
                 _currentPage.SetInteractable(true);
+            }
+
+            PageViewBase GetNextPage()
+            {
+                var nextPageNode = _pageViewList.Find(_currentPage).Next ?? _pageViewList.First;
+                return nextPageNode.Value;
             }
         }
         

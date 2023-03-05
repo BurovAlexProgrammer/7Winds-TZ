@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace PageViews
 {
-    public class PageView1 : PageViewBase
+    public class PageView2 : PageViewBase
     {
         [SerializeField] private UniformViewer _uniformViewer;
         [SerializeField] private Button _buttonNextUniform;
@@ -13,17 +13,12 @@ namespace PageViews
         private RectTransform _rectTransform;
         private CanvasGroup _canvasGroup;
 
-        public override RectTransform RectTransform => _rectTransform;
-
-        public override void SetInteractable(bool state)
-        {
-            _canvasGroup.interactable = state;
-        }
+            public override RectTransform RectTransform => _rectTransform;
 
         private void Awake()
         {
-            _rectTransform = GetComponent<RectTransform>();
             _canvasGroup = GetComponent<CanvasGroup>();
+            _rectTransform = GetComponent<RectTransform>();
             _buttonNextUniform.onClick.AddListener(OnClickButtonNextUniform);
             _buttonPrevUniform.onClick.AddListener(OnClickButtonPrevUniform);
         }
@@ -32,6 +27,11 @@ namespace PageViews
         {
             _buttonNextUniform.onClick.RemoveListener(OnClickButtonNextUniform);
             _buttonPrevUniform.onClick.RemoveListener(OnClickButtonPrevUniform);
+        }
+        
+        public override void SetInteractable(bool state)
+        {
+            _canvasGroup.interactable = state;
         }
 
         private void OnClickButtonNextUniform()

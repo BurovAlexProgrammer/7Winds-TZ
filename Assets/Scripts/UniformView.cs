@@ -6,6 +6,10 @@ public class UniformView : MonoBehaviour
 {
     [SerializeField] private Image[] _imageLayers;
     [SerializeField] private Color[] _colorLayers;
+
+    public event Action<Color[]> OnLayerColorChanged;
+
+    public Color[] Colors => _colorLayers;
     
     private void Start()
     {
@@ -16,6 +20,7 @@ public class UniformView : MonoBehaviour
     {
         _colorLayers[layerIndex] = color;
         _imageLayers[layerIndex].color = color;
+        OnLayerColorChanged?.Invoke(_colorLayers);
     }
 
     private void SetInitialColors()

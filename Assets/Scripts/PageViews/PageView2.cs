@@ -8,7 +8,6 @@ namespace PageViews
         [SerializeField] private UniformViewer _uniformViewer;
         [SerializeField] private Button _buttonNextUniform;
         [SerializeField] private Button _buttonPrevUniform;
-        [SerializeField] private Button _buttonNextPage;
 
         private RectTransform _rectTransform;
         private CanvasGroup _canvasGroup;

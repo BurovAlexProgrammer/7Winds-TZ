@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +13,14 @@ namespace Tabs
         [SerializeField] private Button _buttonRandomize;
         
         public event Action<int> OnTabSwitched;
+        public event Action<Color[]> OnTabColorChanged;
         
         private ColorTabView _selectedTab;
+        
+        private int SelectedTabIndex => _tabs
+            .Select((x, i) => new { tab = x, index = i })
+            .Single(x => x.tab == _selectedTab)
+            .index;
 
         private void Awake()
         {
@@ -22,10 +29,16 @@ namespace Tabs
             foreach (var tabView in _tabs)
             {
                 tabView.OnClick += SelectTab;
+                tabView.OnColorChanged += TabColorChanged;
             }
             
             _palette.OnColorPicked += OnPaletteColorPicked;
             _buttonRandomize.onClick.AddListener(RandomizeColors);
+        }
+
+        private void TabColorChanged(Color newColor)
+        {
+            OnTabColorChanged?.Invoke(_tabs.Select(x => x.Color).ToArray());
         }
 
         private void OnDestroy()
@@ -39,17 +52,18 @@ namespace Tabs
             _buttonRandomize.onClick.RemoveListener(RandomizeColors);
         }
 
-        private void RandomizeColors()
+        public void Init(Color[] colors)
         {
             for (var i = 0; i < _tabs.Count; i++)
             {
-                _tabs[i].SetColor(_palette.GetRandomColor());
+                var tabView = _tabs[i];
+                tabView.SetColor(colors[i]);
             }
         }
-        
-        private void OnPaletteColorPicked(Color color)
+
+        public Color[] GetColors()
         {
-            _selectedTab.SetColor(color);
+            return _tabs.Select(x => x.Color).ToArray();
         }
 
         public void SelectTab(ITabView tabView)
@@ -70,6 +84,19 @@ namespace Tabs
             {
                 tabView.Deselect();
             }
+        }
+
+        private void RandomizeColors()
+        {
+            for (var i = 0; i < _tabs.Count; i++)
+            {
+                _tabs[i].SetColor(_palette.GetRandomColor());
+            }
+        }
+        
+        private void OnPaletteColorPicked(Color color)
+        {
+            _selectedTab.SetColor(color);
         }
     }
 }

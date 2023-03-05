@@ -10,9 +10,12 @@ namespace Tabs
 
         [SerializeField] private GameObject _selectFrame;
         
+        public event Action<Color> OnColorChanged; 
         public event Action<ITabView> OnClick;
 
         private Button _button;
+
+        public Color Color => _tabColorImage.color;
 
         private void Awake()
         {
@@ -40,7 +43,6 @@ namespace Tabs
         {
             OnClick?.Invoke(this as ITabView);
         }
-        public event Action<Color> OnColorChanged; 
         
         public void SetColor(Color color)
         {

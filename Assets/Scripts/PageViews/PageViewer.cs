@@ -46,6 +46,7 @@ namespace PageViews
         private void ShowNextPage()
         {
             ExecuteShowNextPage().Forget();
+            
         }
 
         private async UniTaskVoid ExecuteShowNextPage()

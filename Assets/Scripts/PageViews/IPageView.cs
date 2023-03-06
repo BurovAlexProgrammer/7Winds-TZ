@@ -7,5 +7,6 @@ namespace PageViews
         RectTransform RectTransform { get; }
 
         void SetInteractable(bool state);
+        void Init();
     }
 }

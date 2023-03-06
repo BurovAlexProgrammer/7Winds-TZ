@@ -8,5 +8,6 @@ namespace PageViews
         public abstract RectTransform RectTransform { get; }
 
         public abstract void SetInteractable(bool state);
+        public abstract void Init();
     }
 }

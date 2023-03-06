@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using Uniform;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace PageViews
 {
     public class PageView1 : PageViewBase
     {
-        [SerializeField] private UniformViewer _uniformViewer;
+        [SerializeField] private MultiLayerViewer _uniformViewer;
         [SerializeField] private Button _buttonNextUniform;
         [SerializeField] private Button _buttonPrevUniform;
 
@@ -17,6 +18,10 @@ namespace PageViews
         public override void SetInteractable(bool state)
         {
             _canvasGroup.interactable = state;
+        }
+
+        public override void Init()
+        {
         }
 
         private void Awake()

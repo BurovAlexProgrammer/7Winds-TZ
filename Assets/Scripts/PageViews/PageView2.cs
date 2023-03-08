@@ -1,4 +1,5 @@
-﻿using Uniform;
+﻿using System;
+using Uniform;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,14 +17,11 @@ namespace PageViews
 
         public override RectTransform RectTransform => _rectTransform;
 
-        private void Awake()
+        private void Start()
         {
-            _canvasGroup = GetComponent<CanvasGroup>();
-            _rectTransform = GetComponent<RectTransform>();
-            _buttonNextView.onClick.AddListener(OnClickButtonNextUniform);
-            _buttonPrevView.onClick.AddListener(OnClickButtonPrevUniform);
+            SetUniformView(MainContext.Instance.CurrentUniformView);
         }
-
+        
         private void OnDestroy()
         {
             _buttonNextView.onClick.RemoveListener(OnClickButtonNextUniform);
@@ -35,21 +33,25 @@ namespace PageViews
             _canvasGroup.interactable = state;
         }
 
+
         public override void Init()
         {
-            SetUniformView(MainContext.Instance.CurrentUniformView);
+            _canvasGroup = GetComponent<CanvasGroup>();
+            _rectTransform = GetComponent<RectTransform>();
+            _buttonNextView.onClick.AddListener(OnClickButtonNextUniform);
+            _buttonPrevView.onClick.AddListener(OnClickButtonPrevUniform);
         }
 
         public void SetUniformView(MultiLayerItem item)
         {
             RemoveChildren();
 
-            var uniformViewCopy = Instantiate(item, transform);
+            var uniformViewCopy = Instantiate(item, _uniformViewContainer);
         }
 
         private void RemoveChildren()
         {
-            foreach (Transform child in transform)
+            foreach (Transform child in _uniformViewContainer)
             {
                 Destroy(child);
             }

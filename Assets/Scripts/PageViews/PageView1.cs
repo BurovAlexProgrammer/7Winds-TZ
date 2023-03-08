@@ -22,10 +22,6 @@ namespace PageViews
 
         public override void Init()
         {
-        }
-
-        private void Awake()
-        {
             _rectTransform = GetComponent<RectTransform>();
             _canvasGroup = GetComponent<CanvasGroup>();
             _buttonNextUniform.onClick.AddListener(OnClickButtonNextUniform);

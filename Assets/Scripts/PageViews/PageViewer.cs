@@ -24,8 +24,9 @@ namespace PageViews
             _pageViewList = new LinkedList<PageViewBase>(_pageViews);
             _currentPage = _pageViews[0];
             
-            for (var i = 1; i < _pageViews.Length; i++)
+            for (var i = 0; i < _pageViews.Length; i++)
             {
+                _pageViews[i].Init();
                 _pageViews[i].gameObject.SetActive(false);
             }
 
@@ -33,6 +34,8 @@ namespace PageViews
             {
                 nextPageButton.onClick.AddListener(ShowNextPage);
             }
+            
+            _currentPage.gameObject.SetActive(true);
         }
 
         private void OnDestroy()

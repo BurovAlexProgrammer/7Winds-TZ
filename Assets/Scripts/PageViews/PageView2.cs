@@ -46,14 +46,14 @@ namespace PageViews
         {
             RemoveChildren();
 
-            var uniformViewCopy = Instantiate(item, _uniformViewContainer);
+            Instantiate(item, _uniformViewContainer);
         }
 
         private void RemoveChildren()
         {
             foreach (Transform child in _uniformViewContainer)
             {
-                Destroy(child);
+                Destroy(child.gameObject);
             }
         }
 

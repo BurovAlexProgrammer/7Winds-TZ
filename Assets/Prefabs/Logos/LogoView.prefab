@@ -131,9 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _imageLayers:
-  - {fileID: 6199649770967502381}
   - {fileID: 9038283944084408920}
   - {fileID: 8850253278568571411}
+  - {fileID: 5014933275422595762}
   _colorLayers:
   - {r: 0.2509804, g: 0.64705884, b: 0.85490197, a: 1}
   - {r: 0.019607844, g: 0, b: 0.46274513, a: 1}

@@ -46,13 +46,12 @@ namespace Uniform
 
         private void OnTabColorChanged(Color[] colors)
         {
-            var i = 0;
-            var uniformViewsEnumerator = _uniformViews.GetEnumerator(); 
-        
-            while (uniformViewsEnumerator.MoveNext())
+            foreach (var uniformView in _uniformViews)
             {
-                uniformViewsEnumerator.Current.SetColor(colors[i], i);
-                i++;
+                for (var i = 0; i < uniformView.Colors.Length; i++)
+                {
+                    uniformView.SetColor(colors[i], i);
+                }
             }
         }
 

@@ -46,6 +46,7 @@ namespace Tabs
             foreach (var tabView in _tabs)
             {
                 tabView.OnClick -= SelectTab;
+                tabView.OnColorChanged -= TabColorChanged;
             }
             
             _palette.OnColorPicked -= OnPaletteColorPicked;

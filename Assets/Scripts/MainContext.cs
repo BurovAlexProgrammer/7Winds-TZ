@@ -1,8 +1,8 @@
 ﻿using System;
+using System.IO;
 using Tabs;
 using Uniform;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class MainContext : MonoBehaviour
 {
@@ -13,11 +13,20 @@ public class MainContext : MonoBehaviour
     [SerializeField] private MultiLayerViewer _logoViewer;
 
     private static MainContext _instance;
+    private string _savedUniformFilePath;
+    private bool _initialized;
     public static MainContext Instance => _instance ? _instance : throw new NullReferenceException();
     public UniformData UniformData => _uniformData;
     public MultiLayerItem CurrentUniformView => _uniformViewer.CurrentView;
     public MultiLayerItem CurrentLogoView => _logoViewer.CurrentView;
-
+    private const string StoredFolderName = "StorageFolder";
+    public string StorageFolderPath => Application.platform switch
+    {
+        RuntimePlatform.IPhonePlayer => Path.Combine(Application.persistentDataPath, StoredFolderName),
+        RuntimePlatform.Android => Path.Combine(Application.temporaryCachePath, StoredFolderName),
+        _ => Path.Combine(Application.dataPath, StoredFolderName)
+    };
+    
     public MainContext()
     {
         if (_instance != null) throw new Exception("MainContext singleton duplicate.");
@@ -26,6 +35,57 @@ public class MainContext : MonoBehaviour
     }
 
     private void Awake()
+    {
+        _savedUniformFilePath = Path.Combine(StorageFolderPath, $"SavedUniform.data");
+        
+        if (File.Exists(_savedUniformFilePath))
+        {
+            LoafUniformData();
+        }
+        else
+        {
+            CreateDefaultData();
+            SaveUniformData();
+        }
+        
+        _uniformTabController.OnTabColorChanged += OnUniformTabColorChanged;
+        _uniformViewer.OnModelIndexChanged += OnModelIndexChanged;
+        _logoTabController.OnTabColorChanged += OnLogoTabColorChanged;
+        _logoViewer.OnModelIndexChanged += OnLogoIndexChanged;
+        _initialized = true;
+    }
+
+    private void Start()
+    {
+        _uniformTabController.Init(_uniformData.ModelColors);
+        _logoTabController.Init(_uniformData.LogoColors);
+    }
+    
+    private void OnDestroy()
+    {
+        _uniformTabController.OnTabColorChanged -= OnUniformTabColorChanged;
+        _uniformViewer.OnModelIndexChanged -= OnModelIndexChanged;
+        _logoTabController.OnTabColorChanged -= OnLogoTabColorChanged;
+        _logoViewer.OnModelIndexChanged -= OnLogoIndexChanged;
+    }
+    
+    public void SaveUniformData()
+    {
+        if (!_initialized) return;
+
+        Debug.Log("Saved");
+        var json = JsonUtility.ToJson(_uniformData);
+        File.WriteAllText(_savedUniformFilePath, json);
+    }
+
+    private void LoafUniformData()
+    {
+        var file = File.ReadAllText(_savedUniformFilePath);
+        _uniformData = JsonUtility.FromJson<UniformData>(file);
+    }
+
+    
+    private void CreateDefaultData()
     {
         _uniformData = new UniformData()
         {
@@ -42,19 +102,9 @@ public class MainContext : MonoBehaviour
                 ColorUtility.TryParseHtmlString("#40A5DA", out var color4) ? color1 : Color.white,
                 ColorUtility.TryParseHtmlString("#050076", out var color5) ? color2 : Color.gray,
                 ColorUtility.TryParseHtmlString("#CCCDCC", out var color6) ? color3 : Color.black,
-            }
-        }; //TODO Load from file
-
-        _uniformTabController.OnTabColorChanged += OnUniformTabColorChanged;
-        _uniformViewer.OnModelIndexChanged += OnModelIndexChanged;
-        _logoTabController.OnTabColorChanged += OnLogoTabColorChanged;
-        _logoViewer.OnModelIndexChanged += OnLogoIndexChanged;
-    }
-
-    private void Start()
-    {
-        _uniformTabController.Init(_uniformData.ModelColors);
-        _logoTabController.Init(_uniformData.LogoColors);
+            },
+            TeamName = "TIGER_TEAM",
+        };
     }
 
     private void OnUniformTabColorChanged(Color[] colors)
@@ -65,14 +115,6 @@ public class MainContext : MonoBehaviour
     private void OnLogoTabColorChanged(Color[] colors)
     {
         _uniformData.LogoColors = colors;
-    }
-    
-    private void OnDestroy()
-    {
-        _uniformTabController.OnTabColorChanged -= OnUniformTabColorChanged;
-        _uniformViewer.OnModelIndexChanged -= OnModelIndexChanged;
-        _logoTabController.OnTabColorChanged -= OnLogoTabColorChanged;
-        _logoViewer.OnModelIndexChanged -= OnLogoIndexChanged;
     }
 
     private void OnModelIndexChanged(int index, MultiLayerItem view)

@@ -12,6 +12,8 @@ namespace PageViews
         [SerializeField] private TMP_InputField _teamNameField;
         [SerializeField] private TMP_Text _enterTeamNameLabel;
         [SerializeField] private Button _buttonNext;
+
+        private const int TeamNameMaxLength = 10;
         
         private RectTransform _rectTransform;
         private CanvasGroup _canvasGroup;
@@ -21,44 +23,58 @@ namespace PageViews
 
         private void Awake()
         {
-            _teamNameField.onValueChanged.AddListener(ValidateTeamNameInput);
+            _teamNameField.SetTextWithoutNotify(MainContext.Instance.UniformData.TeamName);
+            _teamNameField.onValueChanged.AddListener(ValidateSaveTeamName);
             _originEnterTeamNameLabelColor = _enterTeamNameLabel.color;
         }
 
-        private void ValidateTeamNameInput(string text)
-        {
-            _buttonNext.interactable = text.Length <= 10;
-            _enterTeamNameLabel.color =
-                text.Length <= 10 ? _originEnterTeamNameLabelColor : Common.Colors.ErrorTextColor;
-        }
-
-        private void Start()
+        private void OnEnable()
         {
             SetPreview();
         }
-        
+
         private void OnDestroy()
         {
+            _teamNameField.onValueChanged.RemoveListener(ValidateSaveTeamName);
         }
 
-        public override void SetInteractable(bool state)
+        private void ValidateSaveTeamName(string text)
         {
-            _canvasGroup.interactable = state;
-        }
+            var isValid = text.Length <= TeamNameMaxLength;
+            _buttonNext.interactable = isValid;
+            _enterTeamNameLabel.color = isValid ? _originEnterTeamNameLabelColor : Common.Colors.ErrorTextColor;
 
+            if (isValid)
+            {
+                MainContext.Instance.UniformData.TeamName = _teamNameField.text;
+            }
+        }
+        
         public override void Init()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
             _rectTransform = GetComponent<RectTransform>();
         }
-
+        
+        public override void SetInteractable(bool state)
+        {
+            _canvasGroup.interactable = state;
+        }
+        
         public void SetPreview()
         {
             RemoveChildren(_logoViewContainer);
             RemoveChildren(_uniformViewContainer);
 
-            Instantiate(MainContext.Instance.CurrentUniformView, _uniformViewContainer);
-            Instantiate(MainContext.Instance.CurrentLogoView, _logoViewContainer);
+            if (MainContext.Instance.CurrentUniformView != null)
+            {
+                Instantiate(MainContext.Instance.CurrentUniformView, _uniformViewContainer);
+            }
+
+            if (MainContext.Instance.CurrentLogoView != null)
+            {
+                Instantiate(MainContext.Instance.CurrentLogoView, _logoViewContainer);
+            }
         }
 
         private void RemoveChildren(Transform transformContainer)

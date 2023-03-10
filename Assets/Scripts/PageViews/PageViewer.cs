@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -24,15 +25,22 @@ namespace PageViews
             _pageViewList = new LinkedList<PageViewBase>(_pageViews);
             _currentPage = _pageViews[0];
             
-            for (var i = 0; i < _pageViews.Length; i++)
+            foreach (var pageView in _pageViews)
             {
-                _pageViews[i].Init();
-                _pageViews[i].gameObject.SetActive(false);
+                pageView.Init();
             }
 
             foreach (var nextPageButton in _nextPageButtons)
             {
                 nextPageButton.onClick.AddListener(ShowNextPage);
+            }
+        }
+
+        private void Start()
+        {
+            foreach (var pageView in _pageViews)
+            {
+                pageView.gameObject.SetActive(false);
             }
             
             _currentPage.gameObject.SetActive(true);

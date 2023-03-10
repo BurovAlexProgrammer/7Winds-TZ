@@ -1,5 +1,4 @@
-﻿using System;
-using Uniform;
+﻿using Uniform;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,11 +16,11 @@ namespace PageViews
 
         public override RectTransform RectTransform => _rectTransform;
 
-        private void Start()
+        private void OnEnable()
         {
             SetUniformView(MainContext.Instance.CurrentUniformView);
         }
-        
+
         private void OnDestroy()
         {
             _buttonNextView.onClick.RemoveListener(OnClickButtonNextUniform);
@@ -42,7 +41,7 @@ namespace PageViews
             _buttonPrevView.onClick.AddListener(OnClickButtonPrevUniform);
         }
 
-        public void SetUniformView(MultiLayerItem item)
+        private void SetUniformView(MultiLayerItem item)
         {
             RemoveChildren();
 

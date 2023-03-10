@@ -40,8 +40,6 @@ namespace Uniform
             }
         
             _currentView = _uniformViews.ElementAt(MainContext.Instance.UniformData.ModelIndex);
-            OnModelIndexChanged?.Invoke(GetModelIndex(_currentView), _currentView);
-            OnLayerColorChanged?.Invoke(_currentView.Colors);
         }
 
         private void OnTabColorChanged(Color[] colors)
